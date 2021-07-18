@@ -1,13 +1,22 @@
-.widget-container {
-    display: flex;
+.bg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
 }
-
-.widget-container > * {
-    height: 400px;
-    width: 50%;
-    padding: 10px;
+.table {
+  width: 90vw;
+  text-align: left;
 }
-
-.dx-scrollview-content {
-    min-height: 380px;
+.search-input {
+  width: 90vw;
+  height: 6vh;
+  margin: 10px;
+}
+.delete-icon {
+  color: red;
+  margin-left: 10px;
+}
+.delete-icon:hover {
+  cursor: pointer;
 }
