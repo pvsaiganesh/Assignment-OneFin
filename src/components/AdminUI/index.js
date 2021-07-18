@@ -7,6 +7,7 @@ class AdminUI extends Component {
   state = {
     listData: [],
     currentData: [],
+    checkedIds: [],
     editingId: null,
     showInput: false,
     toggleCheckboxes: false,
@@ -30,9 +31,10 @@ class AdminUI extends Component {
   }
 
   deleteRow = id => {
-    const {listData} = this.state
-    const filteredData = listData.filter(item => id !== item.id)
-    this.setState({currentData: filteredData})
+    const {currentData} = this.state
+    const filteredData = currentData.filter(item => id !== item.id)
+    console.log(filteredData)
+    this.setState({currentData: filteredData}, this.renderData)
   }
 
   renderSearch = () => (
@@ -44,8 +46,6 @@ class AdminUI extends Component {
   )
 
   searchValue = e => {
-    console.log(e.target.value)
-
     if (e.target.value !== '') {
       this.setState({value: e.target.value}, this.filterRows)
     }
@@ -92,6 +92,15 @@ class AdminUI extends Component {
     }
   }
 
+  deleteSelectedRows = () => {
+    const {checkedIds, currentData} = this.state
+    const filteredData = currentData.filter(
+      item => !checkedIds.includes(item.id),
+    )
+    console.log(filteredData)
+    this.setState({currentData: filteredData, checkedIds: []}, this.renderData)
+  }
+
   renderData = () => {
     const {currentData, showInput, editingId, toggleCheckboxes} = this.state
     return (
@@ -129,6 +138,14 @@ class AdminUI extends Component {
             }
           }
 
+          const getCheckedValue = e => {
+            const {checkedIds} = this.state
+            if (e.target.checked) {
+              checkedIds.push(id)
+            }
+            this.setState({checkedIds}, this.renderData)
+          }
+
           const edit = () => {
             this.setState(prev => ({
               showInput: !prev.showInput,
@@ -141,7 +158,7 @@ class AdminUI extends Component {
                 {showInput ? (
                   <tr key={id}>
                     <td>
-                      <input name="row-checkbox" type="checkbox" />
+                      <input type="checkbox" />
                     </td>
                     <td>
                       <input onChange={getNameInputValue} />
@@ -177,13 +194,17 @@ class AdminUI extends Component {
             <tbody>
               <tr>
                 <td>
-                  <input name="row-checkbox" type="checkbox" />
+                  <input
+                    onClick={getCheckedValue}
+                    name="row-checkbox"
+                    type="checkbox"
+                  />
                 </td>
                 <td>{name}</td>
                 <td>{email}</td>
                 <td>{role}</td>
                 <td>
-                  <FaEdit onClick={edit} />
+                  <FaEdit className="edit-icon" onClick={edit} />
                   <AiOutlineDelete onClick={getId} className="delete-icon" />
                 </td>
               </tr>
@@ -199,6 +220,15 @@ class AdminUI extends Component {
       <div className="bg">
         <div>{this.renderSearch()}</div>
         <div>{this.renderData()}</div>
+        <div>
+          <button
+            onClick={this.deleteSelectedRows}
+            type="button"
+            className="btn"
+          >
+            Delete Selected
+          </button>
+        </div>
       </div>
     )
   }
