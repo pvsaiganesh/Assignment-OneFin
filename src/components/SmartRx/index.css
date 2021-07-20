@@ -50,6 +50,7 @@
 }
 .black-text {
   font-size: 16px;
+  font-weight: bold;
 }
 .directions-image {
   width: 95%;
@@ -70,11 +71,16 @@
   padding-left: 10px;
 }
 .part-1 {
-  min-height: 150px;
+  min-height: 200px;
 }
 .part-2 {
-  min-height: 150px;
+  min-height: 100px;
 }
-
+.italic-text {
+  font-style: italic;
+}
 .list {
+}
+.bigger-text {
+  font-size: 24px;
 }

@@ -194,21 +194,20 @@ class SmartRx extends Component {
               <Row>
                 <Col sm={4} className="card">
                   <div className="part-1">
-                    <p className="gray-text">Appearance</p>
+                    <p className="gray-text">APPEARANCE</p>
                     <img src={appearanceImg} alt="img" />
                   </div>
                   <hr className="horizontal-rule" />
                   <div className="part-2">
-                    <p className="gray-text">Reason for medication</p>
+                    <p className="gray-text">REASON FOR MEDICATION</p>
                     <p className="black-text">{reasonForMedication}</p>
                   </div>
                 </Col>
                 <Col sm={4} className="card">
                   <div className="part-1">
-                    <p className="gray-text">Directions/Notes</p>
-                    <p className="black-text">{directions}</p>
+                    <p className="gray-text">DIRECTIONS/NOTES</p>
+                    <p className="black-text bigger-text">{directions}</p>
                   </div>
-                  <hr />
                   <img
                     className="directions-image"
                     src={directionsImg}
@@ -216,7 +215,7 @@ class SmartRx extends Component {
                   />
                 </Col>
                 <Col sm={4} className="card no-right-border">
-                  <p className="gray-text">Possible Side Effects</p>
+                  <p className="gray-text">POSSIBLE SIDE EFFECTS</p>
                   <ul className="list">
                     {possibleSideEffects.map(sideEffect => {
                       const {
@@ -238,16 +237,18 @@ class SmartRx extends Component {
                     <div>
                       <hr className="horizontal-rule" />
                       <div>
-                        <p className="gray-text">Medical Help Info</p>
-                        <p className="black-text">{medicalHelpInfo}</p>
+                        <p className="gray-text">GET MEDICAL HELP IF</p>
+                        <p className="black-text italic-text">
+                          {medicalHelpInfo}
+                        </p>
                       </div>
                     </div>
                   )}
                 </Col>
               </Row>
-              <Row xs={12}>
+              <Col xs={12}>
                 <hr className="horizontal-rule" />
-              </Row>
+              </Col>
             </Col>
           )
         })}
