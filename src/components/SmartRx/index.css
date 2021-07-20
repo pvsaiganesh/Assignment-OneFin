@@ -1,0 +1,60 @@
+.bg {
+  height: 100vh;
+  padding: 20px 20px 0px 20px;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.main-heading {
+  padding: 0px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.main-heading-2 {
+  font-size: 34px;
+  font-weight: lighter;
+}
+.sub-heading {
+  font-size: 20px;
+  font-weight: lighter;
+}
+.sub-heading-2 {
+  font-size: 15px;
+  font-weight: bold;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.card {
+  text-align: left;
+  padding: 30px;
+  width: 33vw;
+  border-right: dotted 2px lightgray;
+}
+.tablet-name {
+  font-size: 20px;
+}
+.no-right-border {
+  border: none;
+}
+.gray-text {
+  color: gray;
+  font-size: 14px;
+}
+.black-text {
+  font-size: 16px;
+}
+.directions-image {
+  width: 95%;
+}
+.horiztonal-rule {
+  border-top: dotted 4px lightgray;
+  color: transparent;
+}
+.bold-text {
+  font-weight: bold;
+  font-size: 14px;
+}

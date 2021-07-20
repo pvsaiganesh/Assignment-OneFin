@@ -1,7 +1,7 @@
-import AdminUI from './components/AdminUI'
+import SmartRx from './components/SmartRx'
 
 import './App.css'
 
-const App = () => <AdminUI />
+const App = () => <SmartRx />
 
 export default App
