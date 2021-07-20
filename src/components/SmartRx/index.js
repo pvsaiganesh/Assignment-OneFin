@@ -116,6 +116,12 @@ const data = JSON.stringify({
               'https://res.cloudinary.com/pvsaiganesh/image/upload/v1626789509/icon6_mfsgzd.jpg',
             sideEffectName: 'Loss of appetite',
           },
+          {
+            sideEffectId: 5,
+            sideEffectImage:
+              'https://res.cloudinary.com/pvsaiganesh/image/upload/v1626789510/icon3_vuy30w.jpg',
+            sideEffectName: 'Fatigue',
+          },
         ],
       },
     },
@@ -148,15 +154,15 @@ class SmartRx extends Component {
           </h1>
         </div>
         <div>
-          <p className="sub-heading">Patient Name</p>
+          <p className="sub-heading">PATIENT NAME</p>
           <h1 className="sub-heading-2">{totalData.pName}</h1>
         </div>
         <div>
-          <p className="sub-heading">Date Of Birth</p>
+          <p className="sub-heading">DATE OF BIRTH</p>
           <h1 className="sub-heading-2">{totalData.DOB}</h1>
         </div>
         <div>
-          <p className="sub-heading">Date Of Issue</p>
+          <p className="sub-heading">DATE OF ISSUE</p>
           <h1 className="sub-heading-2">{totalData.DOI}</h1>
         </div>
       </div>
@@ -197,7 +203,7 @@ class SmartRx extends Component {
                     <p className="gray-text">APPEARANCE</p>
                     <img src={appearanceImg} alt="img" />
                   </div>
-                  <hr className="horizontal-rule" />
+                  <div className="layout-border-top" />
                   <div className="part-2">
                     <p className="gray-text">REASON FOR MEDICATION</p>
                     <p className="black-text">{reasonForMedication}</p>
@@ -216,7 +222,7 @@ class SmartRx extends Component {
                 </Col>
                 <Col sm={4} className="card no-right-border">
                   <p className="gray-text">POSSIBLE SIDE EFFECTS</p>
-                  <ul className="list">
+                  <ul className=" part-1 list">
                     {possibleSideEffects.map(sideEffect => {
                       const {
                         sideEffectId,
@@ -235,7 +241,6 @@ class SmartRx extends Component {
                     ''
                   ) : (
                     <div>
-                      <hr className="horizontal-rule" />
                       <div>
                         <p className="gray-text">GET MEDICAL HELP IF</p>
                         <p className="black-text italic-text">
@@ -247,7 +252,7 @@ class SmartRx extends Component {
                 </Col>
               </Row>
               <Col xs={12}>
-                <hr className="horizontal-rule" />
+                <div className="layout-border-top gap-2" />
               </Col>
             </Col>
           )
@@ -258,7 +263,7 @@ class SmartRx extends Component {
 
   renderFooter = () => (
     <div className="footer">
-      <hr className="horizontal-rule" />
+      <div className="layout-border-top" />
       <p className="bold-text">
         MEDICATIONS:<span className="lighter-text">ACTIVE MEDICATIONS</span>
       </p>
@@ -270,8 +275,9 @@ class SmartRx extends Component {
       <div className="bg">
         <div>
           <div>{this.renderHeader()}</div>
-          <hr />
-          <hr />
+          <div className="layout-border-top" />
+          <div className="gap" />
+          <div className="layout-border-top" />
           <div>{this.renderTabletDetails()}</div>
         </div>
         <div>{this.renderFooter()}</div>
