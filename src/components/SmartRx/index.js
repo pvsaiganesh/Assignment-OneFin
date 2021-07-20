@@ -16,7 +16,7 @@ const data = JSON.stringify({
   activeMedications: [
     {
       tabletId: 1,
-      tabletName: 'IBUPROFEN 600mg TAB',
+      tabletName: 'IBUPROFEN 600MG TAB',
       tabletDetails: {
         appearanceImg:
           'https://res.cloudinary.com/pvsaiganesh/image/upload/v1626789509/Tablet_1_rrorrv.jpg',
@@ -144,7 +144,7 @@ class SmartRx extends Component {
     return (
       <div className="header">
         <div>
-          <sup className="main-heading">MEDICATIONS</sup>
+          <sup className="main-heading ">MEDICATIONS</sup>
           <h1 className="main-heading-2">
             <img
               src="https://res.cloudinary.com/pvsaiganesh/image/upload/v1626789509/icon7_f1x3kz.jpg"

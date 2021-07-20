@@ -7,7 +7,7 @@
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 .main-heading {
@@ -39,6 +39,7 @@
 }
 .tablet-name {
   font-size: 20px;
+  color: gray;
 }
 .no-right-border {
   border: none;
