@@ -139,7 +139,13 @@ class SmartRx extends Component {
       <div className="header">
         <div>
           <sup className="main-heading">MEDICATIONS</sup>
-          <h1 className="main-heading-2">{`Active Medications (${totalData.activeMedicationsCount})`}</h1>
+          <h1 className="main-heading-2">
+            <img
+              src="https://res.cloudinary.com/pvsaiganesh/image/upload/v1626789509/icon7_f1x3kz.jpg"
+              alt="img"
+            />
+            {`Active Medications (${totalData.activeMedicationsCount})`}
+          </h1>
         </div>
         <div>
           <p className="sub-heading">Patient Name</p>
@@ -164,89 +170,96 @@ class SmartRx extends Component {
       activeMedications = []
     }
     return (
-      <Container fluid>
-        <Row>
-          <Col>
-            {activeMedications.map(item => {
-              const {tabletName, tabletDetails} = item
-              const {
-                appearanceImg,
-                reasonForMedication,
-                directions,
-                directionsImg,
-                medicalHelpInfo,
-              } = tabletDetails
-              let {possibleSideEffects} = tabletDetails
-              if (possibleSideEffects === undefined) {
-                possibleSideEffects = []
-              }
-              return (
+      <Container>
+        {activeMedications.map(item => {
+          const {tabletName, tabletDetails} = item
+          const {
+            appearanceImg,
+            reasonForMedication,
+            directions,
+            directionsImg,
+            medicalHelpInfo,
+          } = tabletDetails
+          let {possibleSideEffects} = tabletDetails
+          if (possibleSideEffects === undefined) {
+            possibleSideEffects = []
+          }
+          return (
+            <Col>
+              <Col xs={12}>
                 <div key={item.tabletId}>
                   <h1 className="tablet-name">{tabletName}</h1>
-                  <Row>
-                    <Col sm={4} className="card">
-                      <img src={appearanceImg} alt="img" />
+                </div>
+              </Col>
+              <Row>
+                <Col sm={4} className="card">
+                  <div className="part-1">
+                    <p className="gray-text">Appearance</p>
+                    <img src={appearanceImg} alt="img" />
+                  </div>
+                  <hr className="horizontal-rule" />
+                  <div className="part-2">
+                    <p className="gray-text">Reason for medication</p>
+                    <p className="black-text">{reasonForMedication}</p>
+                  </div>
+                </Col>
+                <Col sm={4} className="card">
+                  <div className="part-1">
+                    <p className="gray-text">Directions/Notes</p>
+                    <p className="black-text">{directions}</p>
+                  </div>
+                  <hr />
+                  <img
+                    className="directions-image"
+                    src={directionsImg}
+                    alt="img"
+                  />
+                </Col>
+                <Col sm={4} className="card no-right-border">
+                  <p className="gray-text">Possible Side Effects</p>
+                  <ul className="list">
+                    {possibleSideEffects.map(sideEffect => {
+                      const {
+                        sideEffectId,
+                        sideEffectImage,
+                        sideEffectName,
+                      } = sideEffect
+                      return (
+                        <li className="row" key={sideEffectId}>
+                          <img src={sideEffectImage} alt="img" />
+                          <p className="black-text">{sideEffectName}</p>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                  {medicalHelpInfo === undefined ? (
+                    ''
+                  ) : (
+                    <div>
                       <hr className="horizontal-rule" />
                       <div>
-                        <p className="gray-text">Reason for medication</p>
-                        <p className="black-text">{reasonForMedication}</p>
+                        <p className="gray-text">Medical Help Info</p>
+                        <p className="black-text">{medicalHelpInfo}</p>
                       </div>
-                    </Col>
-                    <Col sm={4} className="card">
-                      <p className="gray-text">Directions/Notes</p>
-                      <p className="black-text">{directions}</p>
-                      <hr />
-                      <img
-                        className="directions-image"
-                        src={directionsImg}
-                        alt="img"
-                      />
-                    </Col>
-                    <Col sm={4} className="card no-right-border">
-                      <p className="gray-text">Possible Side Effects</p>
-                      <ul>
-                        {possibleSideEffects.map(sideEffect => {
-                          const {
-                            sideEffectId,
-                            sideEffectImage,
-                            sideEffectName,
-                          } = sideEffect
-                          return (
-                            <li className="row" key={sideEffectId}>
-                              <img src={sideEffectImage} alt="img" />
-                              <p className="black-text">{sideEffectName}</p>
-                            </li>
-                          )
-                        })}
-                      </ul>
-                      {medicalHelpInfo === undefined ? (
-                        ''
-                      ) : (
-                        <div>
-                          <hr className="horizontal-rule" />
-                          <div>
-                            <p className="gray-text">Medical Help Info</p>
-                            <p className="black-text">{medicalHelpInfo}</p>
-                          </div>
-                        </div>
-                      )}
-                    </Col>
-                  </Row>
-                  <hr className="horizontal-rule" />
-                </div>
-              )
-            })}
-          </Col>
-        </Row>
+                    </div>
+                  )}
+                </Col>
+              </Row>
+              <Row xs={12}>
+                <hr className="horizontal-rule" />
+              </Row>
+            </Col>
+          )
+        })}
       </Container>
     )
   }
 
   renderFooter = () => (
-    <div>
+    <div className="footer">
       <hr className="horizontal-rule" />
       <p className="bold-text">
-        MEDICATIONS:<span>ACTIVE MEDICATIONS</span>
+        MEDICATIONS:<span className="lighter-text">ACTIVE MEDICATIONS</span>
       </p>
     </div>
   )
