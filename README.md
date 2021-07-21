@@ -1,2 +1,2 @@
 # Assignment-Niroggyan
-Smart Prescription
+Smart Prescription Rx
