@@ -178,7 +178,7 @@ class SmartRx extends Component {
     return (
       <Container>
         {activeMedications.map(item => {
-          const {tabletName, tabletDetails} = item
+          const {tabletName, tabletDetails, tabletId} = item
           const {
             appearanceImg,
             reasonForMedication,
@@ -191,14 +191,14 @@ class SmartRx extends Component {
             possibleSideEffects = []
           }
           return (
-            <Col>
+            <Col key={tabletId}>
               <Col xs={12}>
                 <div key={item.tabletId}>
                   <h1 className="tablet-name">{tabletName}</h1>
                 </div>
               </Col>
               <Row>
-                <Col sm={4} className="card">
+                <Col xs={4} className="card">
                   <div className="part-1">
                     <p className="gray-text">APPEARANCE</p>
                     <img src={appearanceImg} alt="img" />
@@ -209,7 +209,7 @@ class SmartRx extends Component {
                     <p className="black-text">{reasonForMedication}</p>
                   </div>
                 </Col>
-                <Col sm={4} className="card">
+                <Col xs={4} className="card">
                   <div className="part-1">
                     <p className="gray-text">DIRECTIONS/NOTES</p>
                     <p className="black-text bigger-text">{directions}</p>
@@ -220,7 +220,7 @@ class SmartRx extends Component {
                     alt="img"
                   />
                 </Col>
-                <Col sm={4} className="card no-right-border">
+                <Col xs={4} className="card no-right-border">
                   <p className="gray-text">POSSIBLE SIDE EFFECTS</p>
                   <ul className=" part-1 list">
                     {possibleSideEffects.map(sideEffect => {
