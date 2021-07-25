@@ -14,6 +14,7 @@ class AdminUI extends Component {
     inputRoleValue: '',
     inputEmailValue: '',
     value: '',
+    allCheckboxes: false,
     eleIds: [],
   }
 
@@ -95,11 +96,17 @@ class AdminUI extends Component {
         checkboxes[i].checked = event.target.checked
       }
     }
+    this.setState({allCheckboxes: event.target.checked})
   }
 
   deleteSelectedRows = () => {
-    const {eleIds, currentData} = this.state
-    const filteredData = currentData.filter(item => !eleIds.includes(item.id))
+    const {eleIds, currentData, allCheckboxes} = this.state
+    let filteredData
+    if (allCheckboxes === true) {
+      filteredData = []
+    } else {
+      filteredData = currentData.filter(item => !eleIds.includes(item.id))
+    }
     this.setState({currentData: filteredData})
   }
 
@@ -111,7 +118,7 @@ class AdminUI extends Component {
     })
   }
 
-  renderData = () => {
+  renderCurrentData = () => {
     const {
       currentData,
       showInput,
@@ -119,126 +126,123 @@ class AdminUI extends Component {
       inputNameValue,
       inputEmailValue,
     } = this.state
-    return (
-      <table className="table">
-        <thead>
-          <tr>
-            <th>
-              <input onChange={this.selectOrDeselectAllRows} type="checkbox" />
-            </th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        {currentData.map(item => {
-          const {id} = item
-          const {name, email, role} = item
-          const getId = () => {
-            this.deleteRow(id)
-          }
-          const getNameInputValue = e => {
-            this.setState({inputNameValue: e.target.value}, this.editRow)
-          }
-          const getEmailInputValue = e => {
-            this.setState({inputEmailValue: e.target.value}, this.editRow)
-          }
 
-          const getRoleInputValue = e => {
-            if (e.key === 'Enter') {
-              this.setState(
-                {showInput: false, inputRoleValue: e.target.value},
-                this.editRow,
-              )
-            }
-          }
+    return currentData.map(item => {
+      const {id} = item
+      const {name, email, role} = item
+      const getId = () => {
+        this.deleteRow(id)
+      }
+      const getNameInputValue = e => {
+        this.setState({inputNameValue: e.target.value}, this.editRow)
+      }
+      const getEmailInputValue = e => {
+        this.setState({inputEmailValue: e.target.value}, this.editRow)
+      }
 
-          const getCheckedValueInternal = e => {
-            if (e.target.checked === true) {
-              this.getCheckedValue(e.target.id, id)
-            }
-          }
+      const getRoleInputValue = e => {
+        if (e.key === 'Enter') {
+          this.setState(
+            {showInput: false, inputRoleValue: e.target.value},
+            this.editRow,
+          )
+        }
+      }
 
-          const edit = () => {
-            this.setState(prev => ({
-              showInput: !prev.showInput,
-              editingId: id,
-            }))
-          }
-          if (editingId === id) {
-            return (
-              <tbody key={id}>
-                {showInput ? (
-                  <tr key={id}>
-                    <td>
-                      <input
-                        name="input-checkbox"
-                        id={`checkbox${id}`}
-                        type="checkbox"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        value={inputNameValue}
-                        onChange={getNameInputValue}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        value={inputEmailValue}
-                        onChange={getEmailInputValue}
-                      />
-                    </td>
-                    <td>
-                      <input onKeyDown={getRoleInputValue} />
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td>
-                      <input type="checkbox" />
-                    </td>
-                    <td>{name}</td>
-                    <td>{email}</td>
-                    <td>{role}</td>
-                    <td>
-                      <FaEdit onClick={edit} />
-                      <AiOutlineDelete
-                        onClick={getId}
-                        className="delete-icon"
-                      />
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            )
-          }
-          return (
-            <tbody key={id}>
-              <tr>
+      const getCheckedValueInternal = e => {
+        if (e.target.checked === true) {
+          this.getCheckedValue(e.target.id, id)
+        }
+      }
+
+      const edit = () => {
+        this.setState(prev => ({
+          showInput: !prev.showInput,
+          editingId: id,
+        }))
+      }
+      if (editingId === id) {
+        return (
+          <tbody key={id}>
+            {showInput ? (
+              <tr key={id}>
                 <td>
                   <input
-                    id={`checkbox${id}`}
                     name="input-checkbox"
-                    onChange={getCheckedValueInternal}
+                    id={`checkbox${id}`}
                     type="checkbox"
                   />
+                </td>
+                <td>
+                  <input value={inputNameValue} onChange={getNameInputValue} />
+                </td>
+                <td>
+                  <input
+                    value={inputEmailValue}
+                    onChange={getEmailInputValue}
+                  />
+                </td>
+                <td>
+                  <input onKeyDown={getRoleInputValue} />
+                </td>
+              </tr>
+            ) : (
+              <tr>
+                <td>
+                  <input type="checkbox" />
                 </td>
                 <td>{name}</td>
                 <td>{email}</td>
                 <td>{role}</td>
                 <td>
-                  <FaEdit className="edit-icon" onClick={edit} />
+                  <FaEdit onClick={edit} />
                   <AiOutlineDelete onClick={getId} className="delete-icon" />
                 </td>
               </tr>
-            </tbody>
-          )
-        })}
-      </table>
-    )
+            )}
+          </tbody>
+        )
+      }
+      return (
+        <tbody key={id}>
+          <tr>
+            <td>
+              <input
+                id={`checkbox${id}`}
+                name="input-checkbox"
+                onChange={getCheckedValueInternal}
+                type="checkbox"
+              />
+            </td>
+            <td>{name}</td>
+            <td>{email}</td>
+            <td>{role}</td>
+            <td>
+              <FaEdit className="edit-icon" onClick={edit} />
+              <AiOutlineDelete onClick={getId} className="delete-icon" />
+            </td>
+          </tr>
+        </tbody>
+      )
+    })
   }
+
+  renderData = () => (
+    <table className="table">
+      <thead>
+        <tr>
+          <th>
+            <input onChange={this.selectOrDeselectAllRows} type="checkbox" />
+          </th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      {this.renderCurrentData()}
+    </table>
+  )
 
   render() {
     return (
