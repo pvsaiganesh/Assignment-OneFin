@@ -1,0 +1,38 @@
+.bg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+}
+.table {
+  border-collapse: collapse;
+  width: 90vw;
+  text-align: left;
+}
+.search-input {
+  width: 90vw;
+  height: 6vh;
+  margin: 10px;
+}
+.delete-icon {
+  color: red;
+  margin-left: 10px;
+}
+.delete-icon:hover {
+  cursor: pointer;
+}
+.edit-icon:hover {
+  cursor: pointer;
+}
+td {
+  padding: 10px;
+  border-bottom: solid 2px black;
+}
+.btn {
+  margin: 10px;
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border: transparent;
+  border-radius: 20px;
+}

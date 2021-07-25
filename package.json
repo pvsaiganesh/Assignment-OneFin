@@ -11,12 +11,10 @@
     "@testing-library/react": "11.2.5",
     "@testing-library/user-event": "12.6.2",
     "ag-grid-react": "25.3.0",
-    "bootstrap": "5.0.2",
     "chalk": "4.1.0",
     "devextreme": "21.1",
     "devextreme-react": "21.1",
     "react": "17.0.1",
-    "react-bootstrap": "1.6.1",
     "react-dom": "17.0.1",
     "react-icons": "4.2.0"
   },
