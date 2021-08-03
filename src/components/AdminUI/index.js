@@ -119,13 +119,7 @@ class AdminUI extends Component {
   }
 
   renderCurrentData = () => {
-    const {
-      currentData,
-      showInput,
-      editingId,
-      inputNameValue,
-      inputEmailValue,
-    } = this.state
+    const {currentData, showInput, editingId} = this.state
 
     return currentData.map(item => {
       const {id} = item
@@ -174,13 +168,10 @@ class AdminUI extends Component {
                   />
                 </td>
                 <td>
-                  <input value={inputNameValue} onChange={getNameInputValue} />
+                  <input onChange={getNameInputValue} />
                 </td>
                 <td>
-                  <input
-                    value={inputEmailValue}
-                    onChange={getEmailInputValue}
-                  />
+                  <input onChange={getEmailInputValue} />
                 </td>
                 <td>
                   <input onKeyDown={getRoleInputValue} />
