@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import './index.css'
 
@@ -40,6 +41,10 @@ class Login extends Component {
 
   render() {
     const {err, displayErr} = this.state
+    const token = Cookies.get('sessionToken')
+    if (token !== undefined) {
+      return <Redirect to="/" />
+    }
     return (
       <div className="bg">
         <img
