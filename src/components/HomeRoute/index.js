@@ -106,6 +106,10 @@ class Home extends Component {
     const {currentPage, cannotLoad, pageNumber} = this.state
     const token = Cookies.get('sessionToken')
     const {results} = currentPage
+    if (token === undefined) {
+      return <Redirect to="/login" />
+    }
+
     if (cannotLoad === true || results === undefined) {
       return (
         <div>
@@ -118,10 +122,6 @@ class Home extends Component {
         </div>
       )
     }
-    if (token === undefined) {
-      return <Redirect to="/login" />
-    }
-
     return (
       <div>
         <NavBar />
