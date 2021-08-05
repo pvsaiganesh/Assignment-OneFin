@@ -1,0 +1,78 @@
+.bg {
+  background-image: url('https://res.cloudinary.com/pvsaiganesh/image/upload/v1623851257/netfilx_1_hfevlp.png');
+  height: 100vh;
+  background-size: cover;
+}
+.sign-in-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #0c0b10;
+  height: 456px;
+  width: 440px;
+}
+.heading {
+  font-family: 'HK Grotesk';
+  font-size: 32px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.username-label {
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px;
+}
+.password-label {
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px;
+}
+.input {
+  background: #333333;
+  border-radius: 2px;
+  color: #ffffff;
+  opacity: 0.8;
+  outline: none;
+  margin: 10px;
+}
+.input-box {
+  display: flex;
+  flex-direction: column;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px 20px;
+  background-color: #e50914;
+  border-radius: 4px;
+  color: #ffffff;
+}
+.error {
+  color: #fb923c;
+  font-family: 'HK Grotesk';
+}
+.big-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.logo {
+  padding: 30px;
+}

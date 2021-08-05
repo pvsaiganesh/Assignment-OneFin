@@ -1,5 +1,5 @@
 {
-  "name": "51-welcome-app",
+  "name": "movies-app",
   "private": true,
   "version": "1.0.0",
   "engines": {
@@ -10,13 +10,16 @@
     "@testing-library/jest-dom": "5.11.9",
     "@testing-library/react": "11.2.5",
     "@testing-library/user-event": "12.6.2",
-    "ag-grid-react": "25.3.0",
+    "bootstrap": "5.0.2",
     "chalk": "4.1.0",
-    "devextreme": "21.1",
-    "devextreme-react": "21.1",
+    "js-cookie": "3.0.0",
     "react": "17.0.1",
+    "react-bootstrap": "2.0.0-beta.4",
     "react-dom": "17.0.1",
-    "react-icons": "4.2.0"
+    "react-loader-spinner": "4.0.0",
+    "react-router-dom": "5.2.0",
+    "react-slick": "0.28.1",
+    "react-spinner-loader": "1.1.1"
   },
   "devDependencies": {
     "eslint-config-airbnb": "18.2.1",
