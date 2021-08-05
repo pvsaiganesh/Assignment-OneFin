@@ -32,7 +32,12 @@ class MovieCard extends Component {
     const handleShow = () => this.setState({show: true})
 
     return (
-      <Col xs={4} key={uuid} className="w-30 h-50 d-inline-block movie-card">
+      <Col
+        xs={12}
+        md={4}
+        key={uuid}
+        className="w-30 h-50 d-inline-block movie-card"
+      >
         <button
           className="movie-card-button"
           type="button"
