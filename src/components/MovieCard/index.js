@@ -26,7 +26,7 @@ class MovieCard extends Component {
   render() {
     const {imageUrl, squareImageUrl} = this.state
     const {data} = this.props
-    const {title, uuid, description, genre} = data
+    const {title, uuid, description, genres} = data
     const {show} = this.state
     const handleClose = () => this.setState({show: false})
     const handleShow = () => this.setState({show: true})
@@ -46,8 +46,10 @@ class MovieCard extends Component {
           <div>
             <img className="avatar-img" src={imageUrl} alt="avatar" />
             <h1 className="main-heading">{title}</h1>
-            <p className="genre">{genre}</p>
-            <p className="description">{description}</p>
+            <p className="genre">
+              <i>{genres.split(',').map(item => `${item} `)}</i>
+            </p>
+            <p className="description">{description.substring(0, 100)}</p>
           </div>
         </button>
         <Modal
@@ -62,7 +64,12 @@ class MovieCard extends Component {
               {title}
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>{description}</Modal.Body>
+          <Modal.Body>
+            <div>
+              <i>{genres.split(',').map(item => `${item} `)}</i>
+            </div>
+            {description}
+          </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
