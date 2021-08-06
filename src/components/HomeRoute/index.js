@@ -21,9 +21,14 @@ class Home extends Component {
   }
 
   getData = async () => {
+    const {currentUrl} = this.state
     const token = Cookies.get('sessionToken')
-    const currentUrlFromLocal = localStorage.getItem('url')
+    let currentUrlFromLocal = localStorage.getItem('url')
     const currentPageNumber = localStorage.getItem('pageNo')
+
+    if (currentUrlFromLocal === undefined || currentUrlFromLocal === null) {
+      currentUrlFromLocal = currentUrl
+    }
     const options = {
       method: 'GET',
       headers: {
