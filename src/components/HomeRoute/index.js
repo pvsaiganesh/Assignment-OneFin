@@ -12,6 +12,8 @@ class Home extends Component {
     pageNumber: 1,
     cannotLoad: false,
     currentUrl: 'https://demo.credy.in/api/v1/maya/movies/',
+    results: [],
+    currentResults: [],
   }
 
   componentDidMount() {
@@ -36,6 +38,8 @@ class Home extends Component {
         currentPage: totalData,
         cannotLoad: false,
         pageNumber: parseInt(currentPageNumber, 10),
+        results: totalData.results,
+        currentResults: totalData.results,
       })
     } else {
       this.setState({cannotLoad: true})
@@ -61,6 +65,8 @@ class Home extends Component {
           cannotLoad: false,
           pageNumber: prevState.pageNumber + 1,
           currentUrl: currentPage.next,
+          results: totalNextData.results,
+          currentResults: totalNextData.results,
         }))
       } else {
         this.setState({cannotLoad: true})
@@ -88,6 +94,8 @@ class Home extends Component {
           cannotLoad: false,
           pageNumber: prevState.pageNumber - 1,
           currentUrl: currentPage.previous,
+          results: totalPreviousData.results,
+          currentResults: totalPreviousData.results,
         }))
       } else {
         this.setState({cannotLoad: true})
@@ -102,19 +110,32 @@ class Home extends Component {
     window.location.reload()
   }
 
+  filterResults = e => {
+    const {results} = this.state
+    if (e.target.value.length >= 3) {
+      const filteredResults = results.filter(item =>
+        item.title.toLowerCase().includes(e.target.value.toLowerCase()),
+      )
+      this.setState({currentResults: filteredResults})
+    } else {
+      this.setState({currentResults: results})
+    }
+  }
+
   render() {
-    const {currentPage, cannotLoad, pageNumber} = this.state
+    const {currentPage, cannotLoad, pageNumber, currentResults} = this.state
     const token = Cookies.get('sessionToken')
-    const {results} = currentPage
+
     if (token === undefined) {
       return <Redirect to="/login" />
     }
 
-    if (cannotLoad === true || results === undefined) {
+    if (cannotLoad === true || currentResults === undefined) {
       return (
         <div>
           <NavBar />
           <div className="text-center">
+            <h1>Connection Failed! Please Refresh </h1>
             <Button onClick={this.onClickReload} variant="secondary">
               Refresh
             </Button>
@@ -125,6 +146,9 @@ class Home extends Component {
     return (
       <div>
         <NavBar />
+        <div className="text-center">
+          <input type="search" onChange={this.filterResults} />
+        </div>
         <div className="text-center">
           Count: <strong>{currentPage.count}</strong>
         </div>
@@ -151,7 +175,7 @@ class Home extends Component {
         </div>
         <Container fluid>
           <Row>
-            {results.map(item => (
+            {currentResults.map(item => (
               <MovieCard key={item.uuid} data={item} />
             ))}
           </Row>
