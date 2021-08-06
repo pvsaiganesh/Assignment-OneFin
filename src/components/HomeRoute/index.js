@@ -83,6 +83,7 @@ class Home extends Component {
         headers: {
           Authorization: `Token <${token}>`,
           'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
       }
       const response = await fetch(currentPage.previous, options)
@@ -147,7 +148,11 @@ class Home extends Component {
       <div>
         <NavBar />
         <div className="text-center">
-          <input type="search" onChange={this.filterResults} />
+          <input
+            placeholder="Search In Current Page"
+            type="search"
+            onChange={this.filterResults}
+          />
         </div>
         <div className="text-center">
           Count: <strong>{currentPage.count}</strong>
