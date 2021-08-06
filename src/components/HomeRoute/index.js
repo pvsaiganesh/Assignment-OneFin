@@ -81,7 +81,7 @@ class Home extends Component {
       const options = {
         method: 'GET',
         headers: {
-          Authorization: `Token <${token}>`,
+          Authorization: `Token ${token}`,
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
