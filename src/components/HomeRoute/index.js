@@ -81,7 +81,7 @@ class Home extends Component {
       const options = {
         method: 'GET',
         headers: {
-          Authorization: `Token ${token}`,
+          Authorization: `Token <${token}>`,
           'Content-Type': 'application/json',
         },
       }
@@ -130,7 +130,7 @@ class Home extends Component {
       return <Redirect to="/login" />
     }
 
-    if (cannotLoad === true || currentResults === undefined) {
+    if (cannotLoad === true || currentResults === [] || currentPage === []) {
       return (
         <div>
           <NavBar />
